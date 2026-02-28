@@ -17,26 +17,26 @@ const OptionItem = ({ value, onChange, onRemove, index }: OptionItemProps) => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}
-      className="flex gap-2 md:gap-4 mb-4 md:mb-6 w-full items-center box-border"
+      className="flex gap-2 md:gap-4 mb-3 md:mb-5 w-full items-center box-border"
     >
-      <div className="flex-none flex items-center justify-center w-8 md:w-12 h-14 md:h-24 text-xl md:text-3xl font-black text-muted-foreground/30">
-        {index + 1}
-      </div>
-      <div className="flex-1 min-w-0">
+      <div className="flex-1 flex items-center bg-background border-2 border-purple-100 dark:border-purple-900/30 rounded-xl md:rounded-[1.5rem] shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden group focus-within:border-purple-400 focus-within:ring-1 focus-within:ring-purple-400">
+        <div className="pl-4 md:pl-6 pr-1 md:pr-2 text-base md:text-xl font-black text-purple-600/30 dark:text-purple-400/30 select-none">
+          {index + 1}.
+        </div>
         <Input 
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={`Option ${index + 1}`}
-          className="w-full h-14 md:h-24 text-xl md:text-3xl font-black bg-background border-2 border-purple-100 dark:border-purple-900/30 focus-visible:ring-purple-400 text-foreground rounded-xl md:rounded-[2rem] px-6 md:px-12 shadow-md hover:shadow-lg transition-all duration-200 whitespace-nowrap overflow-hidden text-ellipsis"
+          className="flex-1 h-12 md:h-16 text-base md:text-xl font-bold bg-transparent border-0 focus-visible:ring-0 text-foreground px-2 md:px-3 whitespace-nowrap overflow-hidden text-ellipsis"
         />
       </div>
       <Button 
         variant="ghost" 
         size="icon" 
         onClick={onRemove}
-        className="w-14 md:w-20 h-14 md:h-24 text-destructive hover:bg-destructive/10 rounded-xl md:rounded-[2rem] flex-none transition-colors"
+        className="w-12 md:w-16 h-12 md:h-16 text-destructive/50 hover:text-destructive hover:bg-destructive/10 rounded-xl md:rounded-[1.5rem] flex-none transition-all"
       >
-        <Trash2 className="w-5 h-5 md:w-8 md:h-8" />
+        <Trash2 className="w-5 h-5 md:w-6 md:h-6" />
       </Button>
     </motion.div>
   );

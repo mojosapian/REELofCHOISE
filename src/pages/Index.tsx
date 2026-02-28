@@ -62,12 +62,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground py-4 md:py-6 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-4 md:mb-8">
-          <h1 className="text-2xl md:text-5xl font-black mb-1 tracking-tight">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-4 md:mb-6">
+          <h1 className="text-2xl md:text-4xl font-black mb-1 tracking-tight">
             10-Second <span className="text-purple-600">Decider</span>
           </h1>
-          <p className="text-muted-foreground font-bold text-sm md:text-lg">Stop overthinking, start doing.</p>
+          <p className="text-muted-foreground font-bold text-sm md:text-base">Stop overthinking, start doing.</p>
         </div>
 
         <DecisionVisualizer 
@@ -78,32 +78,32 @@ const Index = () => {
         />
 
         <Tabs defaultValue="edit" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-4 md:mb-6 bg-card border border-border rounded-xl md:rounded-2xl p-1 h-11 md:h-16">
-            <TabsTrigger value="edit" className="rounded-lg md:rounded-xl text-sm md:text-lg font-bold data-[state=active]:bg-purple-500/10 data-[state=active]:text-purple-600 dark:data-[state=active]:text-purple-400">
-              <Plus className="w-4 h-4 md:w-5 md:h-5 mr-2" /> Edit
+          <TabsList className="grid w-full grid-cols-2 mb-4 md:mb-6 bg-card border border-border rounded-xl p-1 h-11 md:h-14">
+            <TabsTrigger value="edit" className="rounded-lg text-sm md:text-base font-bold data-[state=active]:bg-purple-500/10 data-[state=active]:text-purple-600 dark:data-[state=active]:text-purple-400">
+              <Plus className="w-4 h-4 mr-2" /> Edit
             </TabsTrigger>
-            <TabsTrigger value="saved" className="rounded-lg md:rounded-xl text-sm md:text-lg font-bold data-[state=active]:bg-purple-500/10 data-[state=active]:text-purple-600 dark:data-[state=active]:text-purple-400">
-              <History className="w-4 h-4 md:w-5 md:h-5 mr-2" /> Saved
+            <TabsTrigger value="saved" className="rounded-lg text-sm md:text-base font-bold data-[state=active]:bg-purple-500/10 data-[state=active]:text-purple-600 dark:data-[state=active]:text-purple-400">
+              <History className="w-4 h-4 mr-2" /> Saved
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="edit">
-            <Card className="border-none shadow-2xl shadow-purple-500/10 rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden bg-card">
-              <CardHeader className="border-b border-border py-3 md:py-6 px-4 md:px-8">
+            <Card className="border-none shadow-xl shadow-purple-500/5 rounded-2xl md:rounded-3xl overflow-hidden bg-card">
+              <CardHeader className="border-b border-border py-3 md:py-4 px-4 md:px-6">
                 <div className="flex justify-between items-center">
-                  <CardTitle className="text-lg md:text-2xl font-black">Options</CardTitle>
-                  <div className="flex gap-2 md:gap-3">
-                    <Button variant="ghost" size="sm" onClick={handleSave} className="h-8 md:h-10 px-3 md:px-4 text-[10px] md:text-sm font-bold text-purple-600 dark:text-purple-400 hover:bg-purple-500/10 rounded-lg md:rounded-xl">
-                      <Save className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-1.5" /> Save
+                  <CardTitle className="text-lg md:text-xl font-black">Options</CardTitle>
+                  <div className="flex gap-2">
+                    <Button variant="ghost" size="sm" onClick={handleSave} className="h-8 md:h-9 px-3 text-[10px] md:text-xs font-bold text-purple-600 dark:text-purple-400 hover:bg-purple-500/10 rounded-lg">
+                      <Save className="w-3 h-3 mr-1" /> Save
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={() => setOptions(['', ''])} className="h-8 md:h-10 px-3 md:px-4 text-[10px] md:text-sm font-bold rounded-lg md:rounded-xl">
-                      <RotateCcw className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-1.5" /> Reset
+                    <Button variant="ghost" size="sm" onClick={() => setOptions(['', ''])} className="h-8 md:h-9 px-3 text-[10px] md:text-xs font-bold rounded-lg">
+                      <RotateCcw className="w-3 h-3 mr-1" /> Reset
                     </Button>
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="pt-4 md:pt-8 px-4 md:px-8 pb-6 md:pb-8">
-                <div className="max-h-[35vh] md:max-h-[45vh] overflow-y-auto pr-1 md:pr-2 mb-4 md:mb-6 custom-scrollbar">
+              <CardContent className="pt-4 md:pt-6 px-4 md:px-6 pb-6 md:pb-8">
+                <div className="max-h-[40vh] md:max-h-[50vh] overflow-y-auto pr-1 mb-4 md:mb-6 custom-scrollbar">
                   <AnimatePresence initial={false}>
                     {options.map((option, index) => (
                       <OptionItem
@@ -119,22 +119,22 @@ const Index = () => {
                 
                 <BulkInput onImport={(items) => setOptions(items)} />
 
-                <div className="mt-6 md:mt-8 flex flex-col gap-3 md:gap-4">
+                <div className="mt-6 md:mt-8 flex flex-col gap-3">
                   <Button 
                     variant="secondary" 
                     onClick={addOption}
-                    className="w-full h-12 md:h-14 text-base md:text-lg font-bold rounded-xl md:rounded-2xl border-2 border-dashed border-border bg-transparent hover:bg-accent hover:border-purple-300 transition-all"
+                    className="w-full h-12 md:h-14 text-sm md:text-base font-bold rounded-xl border-2 border-dashed border-border bg-transparent hover:bg-accent hover:border-purple-300 transition-all"
                   >
-                    <Plus className="w-4 h-4 md:w-5 md:h-5 mr-2" /> Add One More
+                    <Plus className="w-4 h-4 mr-2" /> Add One More
                   </Button>
                   
                   <Button 
                     size="lg"
                     disabled={isSpinning}
                     onClick={handleDecide}
-                    className="w-full h-14 md:h-16 text-lg md:text-xl font-black rounded-xl md:rounded-2xl bg-purple-600 hover:bg-purple-700 text-white shadow-xl shadow-purple-500/30 transition-all active:scale-95"
+                    className="w-full h-14 md:h-16 text-base md:text-lg font-black rounded-xl bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/20 transition-all active:scale-95"
                   >
-                    {isSpinning ? "Deciding..." : <><Sparkles className="w-5 h-5 md:w-6 md:h-6 mr-2" /> Pick For Me!</>}
+                    {isSpinning ? "Deciding..." : <><Sparkles className="w-5 h-5 mr-2" /> Pick For Me!</>}
                   </Button>
                 </div>
               </CardContent>
@@ -142,22 +142,22 @@ const Index = () => {
           </TabsContent>
 
           <TabsContent value="saved">
-            <div className="space-y-3 md:space-y-4">
+            <div className="space-y-3">
               {lists.length === 0 ? (
-                <div className="text-center py-12 md:py-16 bg-card rounded-[1.5rem] md:rounded-[2.5rem] border-2 border-dashed border-border">
-                  <History className="w-12 h-12 md:w-16 md:h-16 text-muted-foreground/20 mx-auto mb-4" />
-                  <p className="text-muted-foreground font-bold text-base md:text-lg">No saved lists yet</p>
+                <div className="text-center py-12 bg-card rounded-2xl border-2 border-dashed border-border">
+                  <History className="w-12 h-12 text-muted-foreground/20 mx-auto mb-4" />
+                  <p className="text-muted-foreground font-bold text-sm md:text-base">No saved lists yet</p>
                 </div>
               ) : (
                 lists.map((list) => (
-                  <div key={list.id} className="bg-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-border shadow-md flex justify-between items-center">
+                  <div key={list.id} className="bg-card p-4 md:p-5 rounded-xl border border-border shadow-sm flex justify-between items-center">
                     <div>
-                      <h4 className="text-lg md:text-xl font-black">{list.name}</h4>
-                      <p className="text-xs md:text-sm font-bold text-muted-foreground">{list.items.length} items</p>
+                      <h4 className="text-base md:text-lg font-black">{list.name}</h4>
+                      <p className="text-[10px] md:text-xs font-bold text-muted-foreground">{list.items.length} items</p>
                     </div>
-                    <div className="flex gap-2 md:gap-3">
-                      <Button size="sm" variant="outline" className="h-9 md:h-11 rounded-lg md:rounded-xl font-bold" onClick={() => loadList(list.items)}>Load</Button>
-                      <Button size="sm" variant="ghost" className="h-9 md:h-11 rounded-lg md:rounded-xl font-bold text-destructive hover:bg-destructive/10" onClick={() => deleteList(list.id)}>Delete</Button>
+                    <div className="flex gap-2">
+                      <Button size="sm" variant="outline" className="h-8 md:h-10 rounded-lg font-bold text-xs" onClick={() => loadList(list.items)}>Load</Button>
+                      <Button size="sm" variant="ghost" className="h-8 md:h-10 rounded-lg font-bold text-xs text-destructive hover:bg-destructive/10" onClick={() => deleteList(list.id)}>Delete</Button>
                     </div>
                   </div>
                 ))
@@ -168,7 +168,7 @@ const Index = () => {
 
         <AdPlaceholder />
 
-        <div className="mt-8 md:mt-10 flex flex-col items-center gap-4 md:gap-6">
+        <div className="mt-8 flex flex-col items-center gap-4">
           <ThemeToggle />
           <div className="opacity-50">
             <MadeWithDyad />
