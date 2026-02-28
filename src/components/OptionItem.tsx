@@ -19,8 +19,8 @@ const OptionItem = ({ value, onChange, onRemove, index }: OptionItemProps) => {
       exit={{ opacity: 0, x: 20 }}
       className="flex gap-2 md:gap-4 mb-3 md:mb-5 w-full items-center box-border"
     >
-      <div className="flex-1 flex items-center bg-background border-2 border-purple-100 dark:border-purple-900/30 rounded-xl md:rounded-[1.5rem] shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden group focus-within:border-purple-400 focus-within:ring-1 focus-within:ring-purple-400">
-        <div className="pl-4 md:pl-6 pr-1 md:pr-2 text-base md:text-xl font-black text-purple-600/30 dark:text-purple-400/30 select-none">
+      <div className="flex-1 min-w-0 flex items-center bg-background border-2 border-purple-100 dark:border-purple-900/30 rounded-xl md:rounded-[1.5rem] shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden group focus-within:border-purple-400 focus-within:ring-1 focus-within:ring-purple-400">
+        <div className="pl-4 md:pl-6 pr-1 md:pr-2 text-base md:text-xl font-black text-purple-600/30 dark:text-purple-400/30 select-none flex-none">
           {index + 1}.
         </div>
         <Input 

@@ -19,14 +19,18 @@ const DecisionVisualizer = ({ options, currentIndex, isSpinning, result }: Decis
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -20, opacity: 0 }}
           transition={{ type: "spring", stiffness: 400, damping: 30 }}
-          className="text-xl md:text-3xl font-black text-white text-center px-4"
+          className="text-xl md:text-3xl font-black text-white text-center px-6 w-full"
         >
           {isSpinning ? (
-            options[currentIndex]
+            <span className="block whitespace-nowrap overflow-hidden text-ellipsis">
+              {options[currentIndex]}
+            </span>
           ) : result ? (
-            <span className="flex flex-col items-center">
+            <span className="flex flex-col items-center w-full">
               <span className="text-[8px] md:text-[10px] uppercase tracking-[0.3em] font-black opacity-70 mb-1">The Winner is:</span>
-              <span className="leading-tight">{result}</span>
+              <span className="leading-tight whitespace-nowrap overflow-hidden text-ellipsis max-w-full block">
+                {result}
+              </span>
             </span>
           ) : (
             "Ready to Decide?"

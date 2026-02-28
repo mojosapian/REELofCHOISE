@@ -151,11 +151,11 @@ const Index = () => {
               ) : (
                 lists.map((list) => (
                   <div key={list.id} className="bg-card p-4 md:p-5 rounded-xl border border-border shadow-sm flex justify-between items-center">
-                    <div>
-                      <h4 className="text-base md:text-lg font-black">{list.name}</h4>
+                    <div className="min-w-0 flex-1 mr-4">
+                      <h4 className="text-base md:text-lg font-black whitespace-nowrap overflow-hidden text-ellipsis">{list.name}</h4>
                       <p className="text-[10px] md:text-xs font-bold text-muted-foreground">{list.items.length} items</p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-none">
                       <Button size="sm" variant="outline" className="h-8 md:h-10 rounded-lg font-bold text-xs" onClick={() => loadList(list.items)}>Load</Button>
                       <Button size="sm" variant="ghost" className="h-8 md:h-10 rounded-lg font-bold text-xs text-destructive hover:bg-destructive/10" onClick={() => deleteList(list.id)}>Delete</Button>
                     </div>
