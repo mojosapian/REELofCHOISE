@@ -32,8 +32,12 @@ const DecisionWheel = ({ options, rotation, isSpinning }: DecisionWheelProps) =>
 
       {/* The Wheel */}
       <div 
-        className="w-full h-full rounded-full border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden transition-transform duration-[4000ms] cubic-bezier(0.15, 0, 0.15, 1)"
-        style={{ transform: `rotate(${rotation}deg)` }}
+        className="w-full h-full rounded-full border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden"
+        style={{ 
+          transform: `rotate(${rotation}deg)`,
+          transition: 'transform 4000ms cubic-bezier(0.15, 0, 0.15, 1)',
+          willChange: 'transform'
+        }}
       >
         <svg viewBox="-1 -1 2 2" className="w-full h-full -rotate-90">
           {validOptions.map((option, i) => {
@@ -88,9 +92,6 @@ const DecisionWheel = ({ options, rotation, isSpinning }: DecisionWheelProps) =>
       <style dangerouslySetInnerHTML={{ __html: `
         .clip-path-triangle {
           clip-path: polygon(50% 100%, 0 0, 100% 0);
-        }
-        .cubic-bezier {
-          transition-timing-function: cubic-bezier(0.15, 0, 0.15, 1);
         }
       `}} />
     </div>

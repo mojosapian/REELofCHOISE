@@ -18,13 +18,15 @@ export const useDecider = (options: string[]) => {
     const sliceAngle = 360 / validOptions.length;
     
     // Calculate rotation to land on the winner at the top (0 degrees)
-    // We add multiple full spins (5-8) for visual effect
     const extraSpins = 5 + Math.floor(Math.random() * 3);
     const winnerMidAngle = (winnerIndex * sliceAngle) + (sliceAngle / 2);
     
     // The wheel rotates clockwise, so to bring a slice to the top (0deg), 
     // we need to rotate by (360 - midAngle)
     const targetRotation = lastRotation.current + (extraSpins * 360) + (360 - winnerMidAngle);
+    
+    console.log(`[Decider] Winner: ${validOptions[winnerIndex]} (Index: ${winnerIndex})`);
+    console.log(`[Decider] Target Rotation: ${targetRotation}deg`);
     
     setRotation(targetRotation);
     lastRotation.current = targetRotation;
