@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { Plus, Sparkles, RotateCcw, Save, History, CircleDot, Cylinder } from "lucide-react";
+import { Plus, Sparkles, RotateCcw, Save, History } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import OptionItem from "@/components/OptionItem";
 import DecisionOverlay from "@/components/DecisionOverlay";
 import BulkInput from "@/components/BulkInput";
 import AdPlaceholder from "@/components/AdPlaceholder";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import SettingsMenu from "@/components/SettingsMenu";
 import { useDecider } from "@/hooks/use-decider";
 import { useSavedLists } from "@/hooks/use-saved-lists";
 import { MadeWithDyad } from "@/components/made-with-dyad";
@@ -68,11 +67,19 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground py-4 md:py-6 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300 flex flex-col" style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))' }}>
       <div className="max-w-3xl mx-auto w-full flex-1">
-        <div className="text-center mb-8 md:mb-12">
-          <h1 className="text-3xl md:text-5xl font-black mb-2 tracking-tight">
-            REEL<span className="text-purple-600">ofCHOICE</span>
-          </h1>
-          <p className="text-muted-foreground font-bold text-sm md:text-base">Stop overthinking, start doing.</p>
+        {/* Header with Settings */}
+        <div className="flex items-center justify-between mb-8 md:mb-12">
+          <SettingsMenu 
+            wheelStyle={wheelStyle} 
+            onWheelStyleChange={setWheelStyle} 
+          />
+          <div className="text-center flex-1">
+            <h1 className="text-3xl md:text-5xl font-black tracking-tight">
+              REEL<span className="text-purple-600">ofCHOICE</span>
+            </h1>
+            <p className="text-muted-foreground font-bold text-xs md:text-sm">Stop overthinking, start doing.</p>
+          </div>
+          <div className="w-10" /> {/* Spacer to keep title centered */}
         </div>
 
         <DecisionOverlay 
@@ -99,22 +106,7 @@ const Index = () => {
             <Card className="border-none shadow-xl shadow-purple-500/5 rounded-2xl md:rounded-3xl overflow-hidden bg-card">
               <CardHeader className="border-b border-border py-3 md:py-4 px-4 md:px-6">
                 <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-4">
-                    <CardTitle className="text-lg md:text-xl font-black">Options</CardTitle>
-                    <ToggleGroup 
-                      type="single" 
-                      value={wheelStyle} 
-                      onValueChange={(value) => value && setWheelStyle(value as 'flat' | 'cylinder')}
-                      className="bg-muted/50 p-1 rounded-lg"
-                    >
-                      <ToggleGroupItem value="flat" className="h-7 px-2 text-[10px] font-bold data-[state=on]:bg-background">
-                        <CircleDot className="w-3 h-3 mr-1" /> Flat
-                      </ToggleGroupItem>
-                      <ToggleGroupItem value="cylinder" className="h-7 px-2 text-[10px] font-bold data-[state=on]:bg-background">
-                        <Cylinder className="w-3 h-3 mr-1" /> 3D
-                      </ToggleGroupItem>
-                    </ToggleGroup>
-                  </div>
+                  <CardTitle className="text-lg md:text-xl font-black">Options</CardTitle>
                   <div className="flex gap-2">
                     <Button variant="ghost" size="sm" onClick={handleSave} className="h-8 md:h-9 px-3 text-[10px] md:text-xs font-bold text-purple-600 dark:text-purple-400 hover:bg-purple-500/10 rounded-lg">
                       <Save className="w-3 h-3 mr-1" /> Save
@@ -192,7 +184,6 @@ const Index = () => {
         <AdPlaceholder />
 
         <div className="mt-8 flex flex-col items-center gap-4">
-          <ThemeToggle />
           <div className="opacity-50">
             <MadeWithDyad />
           </div>
