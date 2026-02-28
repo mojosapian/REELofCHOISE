@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import DecisionWheel from "./DecisionWheel";
+import VerticalWheel3D from "./VerticalWheel3D";
 import DecisionVisualizer from "./DecisionVisualizer";
 
 interface DecisionOverlayProps {
@@ -48,7 +48,7 @@ const DecisionOverlay = ({
               <p className="text-muted-foreground font-medium">Good luck!</p>
             </div>
 
-            <DecisionWheel 
+            <VerticalWheel3D 
               options={options} 
               rotation={rotation} 
               isSpinning={isSpinning} 
