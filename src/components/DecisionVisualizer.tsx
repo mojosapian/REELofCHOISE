@@ -11,21 +11,21 @@ interface DecisionVisualizerProps {
 
 const DecisionVisualizer = ({ options, currentIndex, isSpinning, result }: DecisionVisualizerProps) => {
   return (
-    <div className="relative h-36 flex items-center justify-center overflow-hidden rounded-[2rem] bg-gradient-to-br from-purple-600 to-blue-600 shadow-xl mb-8">
+    <div className="relative h-20 md:h-28 flex items-center justify-center overflow-hidden rounded-2xl md:rounded-[2rem] bg-gradient-to-br from-purple-600 to-blue-600 shadow-lg mb-6 md:mb-8">
       <AnimatePresence mode="wait">
         <motion.div
           key={isSpinning ? currentIndex : (result || 'idle')}
-          initial={{ y: 40, opacity: 0 }}
+          initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -40, opacity: 0 }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="text-2xl md:text-4xl font-black text-white text-center px-6"
+          exit={{ y: -20, opacity: 0 }}
+          transition={{ type: "spring", stiffness: 400, damping: 30 }}
+          className="text-xl md:text-3xl font-black text-white text-center px-4"
         >
           {isSpinning ? (
             options[currentIndex]
           ) : result ? (
             <span className="flex flex-col items-center">
-              <span className="text-[10px] uppercase tracking-[0.3em] font-black opacity-70 mb-2">The Winner is:</span>
+              <span className="text-[8px] md:text-[10px] uppercase tracking-[0.3em] font-black opacity-70 mb-1">The Winner is:</span>
               <span className="leading-tight">{result}</span>
             </span>
           ) : (
@@ -35,8 +35,8 @@ const DecisionVisualizer = ({ options, currentIndex, isSpinning, result }: Decis
       </AnimatePresence>
       
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-2 bg-white/10" />
-      <div className="absolute bottom-0 left-0 w-full h-2 bg-black/5" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-white/10" />
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-black/5" />
     </div>
   );
 };
