@@ -40,7 +40,7 @@ const DecisionWheel = ({ options, rotation, isSpinning }: DecisionWheelProps) =>
             const startPercent = i / validOptions.length;
             const endPercent = (i + 1) / validOptions.length;
             
-            const [startX, startY] = getCoordinatesForPercent(startX === undefined ? startPercent : startPercent);
+            const [startX, startY] = getCoordinatesForPercent(startPercent);
             const [endX, endY] = getCoordinatesForPercent(endPercent);
             
             const largeArcFlag = endPercent - startPercent > 0.5 ? 1 : 0;
