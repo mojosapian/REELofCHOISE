@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Sparkles, RotateCcw, Save, History } from "lucide-react";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Plus, Sparkles, RotateCcw, Save, History, CircleDot, Cylinder } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import OptionItem from "@/components/OptionItem";
 import DecisionOverlay from "@/components/DecisionOverlay";
@@ -17,6 +18,8 @@ import { showSuccess, showError } from "@/utils/toast";
 const Index = () => {
   const [options, setOptions] = useState<string[]>(['Pizza', 'Sushi', 'Burgers']);
   const [isWheelVisible, setIsWheelVisible] = useState(false);
+  const [wheelStyle, setWheelStyle] = useState<'flat' | 'cylinder'>('cylinder');
+  
   const { isSpinning, result, rotation, decide } = useDecider(options);
   const { lists, saveList, deleteList } = useSavedLists();
 
@@ -79,6 +82,7 @@ const Index = () => {
           rotation={rotation}
           isSpinning={isSpinning}
           result={result}
+          wheelStyle={wheelStyle}
         />
 
         <Tabs defaultValue="edit" className="w-full">
@@ -95,7 +99,22 @@ const Index = () => {
             <Card className="border-none shadow-xl shadow-purple-500/5 rounded-2xl md:rounded-3xl overflow-hidden bg-card">
               <CardHeader className="border-b border-border py-3 md:py-4 px-4 md:px-6">
                 <div className="flex justify-between items-center">
-                  <CardTitle className="text-lg md:text-xl font-black">Options</CardTitle>
+                  <div className="flex items-center gap-4">
+                    <CardTitle className="text-lg md:text-xl font-black">Options</CardTitle>
+                    <ToggleGroup 
+                      type="single" 
+                      value={wheelStyle} 
+                      onValueChange={(value) => value && setWheelStyle(value as 'flat' | 'cylinder')}
+                      className="bg-muted/50 p-1 rounded-lg"
+                    >
+                      <ToggleGroupItem value="flat" className="h-7 px-2 text-[10px] font-bold data-[state=on]:bg-background">
+                        <CircleDot className="w-3 h-3 mr-1" /> Flat
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="cylinder" className="h-7 px-2 text-[10px] font-bold data-[state=on]:bg-background">
+                        <Cylinder className="w-3 h-3 mr-1" /> 3D
+                      </ToggleGroupItem>
+                    </ToggleGroup>
+                  </div>
                   <div className="flex gap-2">
                     <Button variant="ghost" size="sm" onClick={handleSave} className="h-8 md:h-9 px-3 text-[10px] md:text-xs font-bold text-purple-600 dark:text-purple-400 hover:bg-purple-500/10 rounded-lg">
                       <Save className="w-3 h-3 mr-1" /> Save

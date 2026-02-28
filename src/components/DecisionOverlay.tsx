@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import DecisionWheel from "./DecisionWheel";
 import VerticalWheel3D from "./VerticalWheel3D";
 import DecisionVisualizer from "./DecisionVisualizer";
 
@@ -12,6 +13,7 @@ interface DecisionOverlayProps {
   rotation: number;
   isSpinning: boolean;
   result: string | null;
+  wheelStyle: 'flat' | 'cylinder';
 }
 
 const DecisionOverlay = ({ 
@@ -20,7 +22,8 @@ const DecisionOverlay = ({
   options, 
   rotation, 
   isSpinning, 
-  result 
+  result,
+  wheelStyle
 }: DecisionOverlayProps) => {
   return (
     <AnimatePresence>
@@ -48,11 +51,19 @@ const DecisionOverlay = ({
               <p className="text-muted-foreground font-medium">Good luck!</p>
             </div>
 
-            <VerticalWheel3D 
-              options={options} 
-              rotation={rotation} 
-              isSpinning={isSpinning} 
-            />
+            {wheelStyle === 'cylinder' ? (
+              <VerticalWheel3D 
+                options={options} 
+                rotation={rotation} 
+                isSpinning={isSpinning} 
+              />
+            ) : (
+              <DecisionWheel 
+                options={options} 
+                rotation={rotation} 
+                isSpinning={isSpinning} 
+              />
+            )}
 
             <div className="w-full">
               <DecisionVisualizer 
