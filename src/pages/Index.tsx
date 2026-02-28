@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus, Sparkles, RotateCcw, Save, History } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import OptionItem from "@/components/OptionItem";
-import DecisionVisualizer from "@/components/DecisionVisualizer";
-import DecisionWheel from "@/components/DecisionWheel";
+import DecisionOverlay from "@/components/DecisionOverlay";
 import BulkInput from "@/components/BulkInput";
 import AdPlaceholder from "@/components/AdPlaceholder";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -17,6 +16,7 @@ import { showSuccess, showError } from "@/utils/toast";
 
 const Index = () => {
   const [options, setOptions] = useState<string[]>(['Pizza', 'Sushi', 'Burgers']);
+  const [isWheelVisible, setIsWheelVisible] = useState(false);
   const { isSpinning, result, rotation, decide } = useDecider(options);
   const { lists, saveList, deleteList } = useSavedLists();
 
@@ -40,6 +40,7 @@ const Index = () => {
       showError("Please enter at least 2 valid options.");
       return;
     }
+    setIsWheelVisible(true);
     decide();
   };
 
@@ -64,24 +65,20 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground py-4 md:py-6 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300 flex flex-col" style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))' }}>
       <div className="max-w-3xl mx-auto w-full flex-1">
-        <div className="text-center mb-4 md:mb-6">
-          <h1 className="text-2xl md:text-4xl font-black mb-1 tracking-tight">
+        <div className="text-center mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-5xl font-black mb-2 tracking-tight">
             Rate<span className="text-purple-600">Radar</span>
           </h1>
-          <p className="text-muted-foreground font-bold text-xs md:text-sm">Stop overthinking, start doing.</p>
+          <p className="text-muted-foreground font-bold text-sm md:text-base">Stop overthinking, start doing.</p>
         </div>
 
-        <DecisionWheel 
-          options={options} 
-          rotation={rotation} 
-          isSpinning={isSpinning} 
-        />
-
-        <DecisionVisualizer 
-          options={options} 
-          currentIndex={0} // Not used in wheel mode
-          isSpinning={isSpinning} 
-          result={result} 
+        <DecisionOverlay 
+          isVisible={isWheelVisible}
+          onClose={() => setIsWheelVisible(false)}
+          options={options}
+          rotation={rotation}
+          isSpinning={isSpinning}
+          result={result}
         />
 
         <Tabs defaultValue="edit" className="w-full">
@@ -110,7 +107,7 @@ const Index = () => {
                 </div>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-4 md:px-6 pb-6 md:pb-8">
-                <div className="max-h-[30vh] md:max-h-[40vh] overflow-y-auto pr-1 mb-4 md:mb-6 custom-scrollbar">
+                <div className="max-h-[40vh] md:max-h-[50vh] overflow-y-auto pr-1 mb-4 md:mb-6 custom-scrollbar">
                   <AnimatePresence initial={false}>
                     {options.map((option, index) => (
                       <OptionItem
