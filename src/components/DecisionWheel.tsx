@@ -25,21 +25,22 @@ const DecisionWheel = ({ options, rotation, isSpinning }: DecisionWheelProps) =>
 
   return (
     <div className="relative w-full max-w-[280px] aspect-square mx-auto mb-8 group">
-      {/* Pointer */}
+      {/* Pointer at 12 o'clock */}
       <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10 w-6 h-8 bg-white dark:bg-slate-900 shadow-lg clip-path-triangle flex items-center justify-center rounded-t-sm">
         <div className="w-2 h-4 bg-purple-600 rounded-full" />
       </div>
 
-      {/* The Wheel */}
+      {/* The Wheel - Rotating counter-clockwise to match index-based rotation */}
       <div 
         className="w-full h-full rounded-full border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden"
         style={{ 
-          transform: `rotate(${rotation}deg)`,
+          transform: `rotate(${-rotation}deg)`,
           transition: 'transform 4000ms cubic-bezier(0.15, 0, 0.15, 1)',
           willChange: 'transform'
         }}
       >
-        <svg viewBox="-1 -1 2 2" className="w-full h-full -rotate-90">
+        {/* SVG is rotated so that the center of slice 0 is at 12 o'clock when rotation is 0 */}
+        <svg viewBox="-1 -1 2 2" className="w-full h-full" style={{ transform: `rotate(${-90 - (sliceAngle / 2)}deg)` }}>
           {validOptions.map((option, i) => {
             const startPercent = i / validOptions.length;
             const endPercent = (i + 1) / validOptions.length;
@@ -62,7 +63,6 @@ const DecisionWheel = ({ options, rotation, isSpinning }: DecisionWheelProps) =>
                   fill={COLORS[i % COLORS.length]} 
                   className="stroke-white/20 stroke-[0.01]"
                 />
-                {/* Text on slices */}
                 <text
                   x="0.5"
                   y="0"
@@ -80,13 +80,11 @@ const DecisionWheel = ({ options, rotation, isSpinning }: DecisionWheelProps) =>
               </g>
             );
           })}
-          {/* Center Hub */}
           <circle cx="0" cy="0" r="0.15" fill="white" className="dark:fill-slate-800 shadow-inner" />
           <circle cx="0" cy="0" r="0.08" fill="#7928CA" />
         </svg>
       </div>
 
-      {/* Decorative Ring */}
       <div className="absolute inset-0 rounded-full border-[12px] border-black/5 pointer-events-none" />
       
       <style dangerouslySetInnerHTML={{ __html: `

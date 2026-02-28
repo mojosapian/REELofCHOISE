@@ -14,28 +14,30 @@ export const useDecider = (options: string[]) => {
     setIsSpinning(true);
     setResult(null);
 
+    // 1. Calculate Winner First
     const winnerIndex = Math.floor(Math.random() * validOptions.length);
-    const sliceAngle = 360 / validOptions.length;
+    const angleStep = 360 / validOptions.length;
     
-    // Calculate rotation to land on the winner at the top (0 degrees)
+    // 2. Calculate Degrees using the requested formula
+    // TotalRotation = (FullSpins * 360) + (winnerIndex * DegreesPerSlice)
     const extraSpins = 5 + Math.floor(Math.random() * 3);
-    const winnerMidAngle = (winnerIndex * sliceAngle) + (sliceAngle / 2);
     
-    // The wheel rotates clockwise, so to bring a slice to the top (0deg), 
-    // we need to rotate by (360 - midAngle)
-    const targetRotation = lastRotation.current + (extraSpins * 360) + (360 - winnerMidAngle);
+    // We calculate the target based on the current rotation to ensure it always spins forward
+    const currentRotation = lastRotation.current;
+    const baseRotation = Math.ceil(currentRotation / 360) * 360;
+    const targetRotation = baseRotation + (extraSpins * 360) + (winnerIndex * angleStep);
     
-    console.log(`[Decider] Triggered! Winner: ${validOptions[winnerIndex]} (Index: ${winnerIndex})`);
-    console.log(`[Decider] Current Rotation: ${lastRotation.current}deg -> Target: ${targetRotation}deg`);
+    console.log(`[Decider] Winner: ${validOptions[winnerIndex]} (Index: ${winnerIndex})`);
+    console.log(`[Decider] Target Rotation: ${targetRotation}deg`);
     
-    // We use a small timeout to ensure the Overlay has mounted with the 'last' rotation 
-    // before we trigger the 'new' rotation, which forces the CSS transition to fire.
+    // 3. Sync Animation
+    // Small timeout to ensure the overlay is ready to animate from the last position
     setTimeout(() => {
       setRotation(targetRotation);
       lastRotation.current = targetRotation;
     }, 50);
 
-    // Match this timeout with the CSS transition duration (4s)
+    // 4. Handle Result
     setTimeout(() => {
       setResult(validOptions[winnerIndex]);
       setIsSpinning(false);
@@ -46,7 +48,7 @@ export const useDecider = (options: string[]) => {
         origin: { y: 0.6 },
         colors: ['#FF0080', '#7928CA', '#0070F3']
       });
-    }, 4050); // 4000ms transition + 50ms delay
+    }, 4050);
   }, [options]);
 
   return {
