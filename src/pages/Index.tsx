@@ -61,13 +61,13 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground py-4 md:py-6 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen bg-background text-foreground py-4 md:py-6 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300 flex flex-col" style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))' }}>
+      <div className="max-w-3xl mx-auto w-full flex-1">
         <div className="text-center mb-4 md:mb-6">
           <h1 className="text-2xl md:text-4xl font-black mb-1 tracking-tight">
-            10-Second <span className="text-purple-600">Decider</span>
+            Rate<span className="text-purple-600">Radar</span>
           </h1>
-          <p className="text-muted-foreground font-bold text-sm md:text-base">Stop overthinking, start doing.</p>
+          <p className="text-muted-foreground font-bold text-xs md:text-sm">Stop overthinking, start doing.</p>
         </div>
 
         <DecisionVisualizer 
@@ -103,7 +103,7 @@ const Index = () => {
                 </div>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-4 md:px-6 pb-6 md:pb-8">
-                <div className="max-h-[40vh] md:max-h-[50vh] overflow-y-auto pr-1 mb-4 md:mb-6 custom-scrollbar">
+                <div className="max-h-[35vh] md:max-h-[45vh] overflow-y-auto pr-1 mb-4 md:mb-6 custom-scrollbar">
                   <AnimatePresence initial={false}>
                     {options.map((option, index) => (
                       <OptionItem

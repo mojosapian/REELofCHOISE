@@ -10,16 +10,17 @@ interface DecisionVisualizerProps {
 }
 
 const DecisionVisualizer = ({ options, currentIndex, isSpinning, result }: DecisionVisualizerProps) => {
+  // Reduced height from h-20/h-28 to h-14/h-20 (approx 30% reduction)
   return (
-    <div className="relative h-20 md:h-28 flex items-center justify-center overflow-hidden rounded-2xl md:rounded-[2rem] bg-gradient-to-br from-purple-600 to-blue-600 shadow-lg mb-6 md:mb-8">
+    <div className="relative h-14 md:h-20 flex items-center justify-center overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-br from-purple-600 to-blue-600 shadow-lg mb-4 md:mb-6">
       <AnimatePresence mode="wait">
         <motion.div
           key={isSpinning ? currentIndex : (result || 'idle')}
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
+          exit={{ y: -10, opacity: 0 }}
           transition={{ type: "spring", stiffness: 400, damping: 30 }}
-          className="text-xl md:text-3xl font-black text-white text-center px-6 w-full"
+          className="text-lg md:text-2xl font-black text-white text-center px-4 w-full"
         >
           {isSpinning ? (
             <span className="block whitespace-nowrap overflow-hidden text-ellipsis">
@@ -27,7 +28,7 @@ const DecisionVisualizer = ({ options, currentIndex, isSpinning, result }: Decis
             </span>
           ) : result ? (
             <span className="flex flex-col items-center w-full">
-              <span className="text-[8px] md:text-[10px] uppercase tracking-[0.3em] font-black opacity-70 mb-1">The Winner is:</span>
+              <span className="text-[7px] md:text-[9px] uppercase tracking-[0.3em] font-black opacity-70">Winner:</span>
               <span className="leading-tight whitespace-nowrap overflow-hidden text-ellipsis max-w-full block">
                 {result}
               </span>
@@ -38,9 +39,8 @@ const DecisionVisualizer = ({ options, currentIndex, isSpinning, result }: Decis
         </motion.div>
       </AnimatePresence>
       
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-white/10" />
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-black/5" />
+      <div className="absolute top-0 left-0 w-full h-0.5 bg-white/10" />
+      <div className="absolute bottom-0 left-0 w-full h-0.5 bg-black/5" />
     </div>
   );
 };
