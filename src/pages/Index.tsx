@@ -6,6 +6,7 @@ import { Plus, Sparkles, RotateCcw, Save, History } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import OptionItem from "@/components/OptionItem";
 import DecisionVisualizer from "@/components/DecisionVisualizer";
+import DecisionWheel from "@/components/DecisionWheel";
 import BulkInput from "@/components/BulkInput";
 import AdPlaceholder from "@/components/AdPlaceholder";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -16,7 +17,7 @@ import { showSuccess, showError } from "@/utils/toast";
 
 const Index = () => {
   const [options, setOptions] = useState<string[]>(['Pizza', 'Sushi', 'Burgers']);
-  const { isSpinning, result, currentIndex, decide } = useDecider(options);
+  const { isSpinning, result, rotation, decide } = useDecider(options);
   const { lists, saveList, deleteList } = useSavedLists();
 
   const addOption = () => setOptions([...options, '']);
@@ -70,9 +71,15 @@ const Index = () => {
           <p className="text-muted-foreground font-bold text-xs md:text-sm">Stop overthinking, start doing.</p>
         </div>
 
+        <DecisionWheel 
+          options={options} 
+          rotation={rotation} 
+          isSpinning={isSpinning} 
+        />
+
         <DecisionVisualizer 
           options={options} 
-          currentIndex={currentIndex} 
+          currentIndex={0} // Not used in wheel mode
           isSpinning={isSpinning} 
           result={result} 
         />
@@ -103,7 +110,7 @@ const Index = () => {
                 </div>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-4 md:px-6 pb-6 md:pb-8">
-                <div className="max-h-[35vh] md:max-h-[45vh] overflow-y-auto pr-1 mb-4 md:mb-6 custom-scrollbar">
+                <div className="max-h-[30vh] md:max-h-[40vh] overflow-y-auto pr-1 mb-4 md:mb-6 custom-scrollbar">
                   <AnimatePresence initial={false}>
                     {options.map((option, index) => (
                       <OptionItem
@@ -134,7 +141,7 @@ const Index = () => {
                     onClick={handleDecide}
                     className="w-full h-14 md:h-16 text-base md:text-lg font-black rounded-xl bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/20 transition-all active:scale-95"
                   >
-                    {isSpinning ? "Deciding..." : <><Sparkles className="w-5 h-5 mr-2" /> Pick For Me!</>}
+                    {isSpinning ? "Spinning..." : <><Sparkles className="w-5 h-5 mr-2" /> Pick For Me!</>}
                   </Button>
                 </div>
               </CardContent>
