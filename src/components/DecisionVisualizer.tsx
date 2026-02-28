@@ -19,7 +19,10 @@ const DecisionVisualizer = ({ options, currentIndex, isSpinning, result }: Decis
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -60, opacity: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className="text-3xl md:text-5xl font-black text-white text-center px-8"
+          className={cn(
+            "font-black text-white text-center px-8",
+            result || isSpinning ? "text-3xl md:text-5xl" : "text-2xl md:text-3xl opacity-90"
+          )}
         >
           {isSpinning ? (
             options[currentIndex]
