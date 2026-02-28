@@ -17,24 +17,24 @@ const OptionItem = ({ value, onChange, onRemove, index }: OptionItemProps) => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}
-      className="flex gap-3 mb-3"
+      className="flex gap-4 mb-4"
     >
-      <div className="flex-none flex items-center justify-center w-10 h-14 text-xl font-black text-muted-foreground/50">
+      <div className="flex-none flex items-center justify-center w-12 h-20 text-2xl font-black text-muted-foreground/40">
         {index + 1}
       </div>
       <Input 
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={`Option ${index + 1}`}
-        className="h-14 text-lg font-bold bg-background/50 border-purple-100 dark:border-purple-900 focus-visible:ring-purple-400 text-foreground rounded-xl px-5"
+        className="h-20 text-2xl font-black bg-background/50 border-2 border-purple-100 dark:border-purple-900/50 focus-visible:ring-purple-400 text-foreground rounded-2xl px-6 shadow-sm"
       />
       <Button 
         variant="ghost" 
         size="icon" 
         onClick={onRemove}
-        className="w-14 h-14 text-destructive hover:bg-destructive/10 rounded-xl"
+        className="w-20 h-20 text-destructive hover:bg-destructive/10 rounded-2xl flex-none"
       >
-        <Trash2 className="w-6 h-6" />
+        <Trash2 className="w-8 h-8" />
       </Button>
     </motion.div>
   );
