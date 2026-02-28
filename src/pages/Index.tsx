@@ -9,6 +9,7 @@ import DecisionVisualizer from "@/components/DecisionVisualizer";
 import BulkInput from "@/components/BulkInput";
 import LockedCategory from "@/components/LockedCategory";
 import AdPlaceholder from "@/components/AdPlaceholder";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useDecider } from "@/hooks/use-decider";
 import { useSavedLists } from "@/hooks/use-saved-lists";
 import { MadeWithDyad } from "@/components/made-with-dyad";
@@ -61,13 +62,17 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8f9ff] py-8 px-4 sm:px-6 lg:px-8 font-sans">
+    <div className="min-h-screen bg-background text-foreground py-8 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300">
       <div className="max-w-md mx-auto">
+        <div className="flex justify-end mb-4">
+          <ThemeToggle />
+        </div>
+        
         <div className="text-center mb-6">
-          <h1 className="text-4xl font-black text-slate-900 mb-1 tracking-tight">
+          <h1 className="text-4xl font-black mb-1 tracking-tight">
             10-Second <span className="text-purple-600">Decider</span>
           </h1>
-          <p className="text-slate-500 font-medium text-sm">Stop overthinking, start doing.</p>
+          <p className="text-muted-foreground font-medium text-sm">Stop overthinking, start doing.</p>
         </div>
 
         <DecisionVisualizer 
@@ -78,25 +83,25 @@ const Index = () => {
         />
 
         <Tabs defaultValue="edit" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-4 bg-white border border-slate-100 rounded-xl p-1 h-12">
-            <TabsTrigger value="edit" className="rounded-lg data-[state=active]:bg-purple-50 data-[state=active]:text-purple-600">
+          <TabsList className="grid w-full grid-cols-3 mb-4 bg-card border border-border rounded-xl p-1 h-12">
+            <TabsTrigger value="edit" className="rounded-lg data-[state=active]:bg-purple-500/10 data-[state=active]:text-purple-600 dark:data-[state=active]:text-purple-400">
               <Plus className="w-4 h-4 mr-2" /> Edit
             </TabsTrigger>
-            <TabsTrigger value="saved" className="rounded-lg data-[state=active]:bg-purple-50 data-[state=active]:text-purple-600">
+            <TabsTrigger value="saved" className="rounded-lg data-[state=active]:bg-purple-500/10 data-[state=active]:text-purple-600 dark:data-[state=active]:text-purple-400">
               <History className="w-4 h-4 mr-2" /> Saved
             </TabsTrigger>
-            <TabsTrigger value="premium" className="rounded-lg data-[state=active]:bg-purple-50 data-[state=active]:text-purple-600">
+            <TabsTrigger value="premium" className="rounded-lg data-[state=active]:bg-purple-500/10 data-[state=active]:text-purple-600 dark:data-[state=active]:text-purple-400">
               <LayoutGrid className="w-4 h-4 mr-2" /> Premium
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="edit">
-            <Card className="border-none shadow-2xl shadow-purple-100/50 rounded-3xl overflow-hidden">
-              <CardHeader className="bg-white border-b border-slate-50 py-4">
+            <Card className="border-none shadow-2xl shadow-purple-500/5 rounded-3xl overflow-hidden bg-card">
+              <CardHeader className="border-b border-border py-4">
                 <div className="flex justify-between items-center">
                   <CardTitle className="text-lg">Options</CardTitle>
                   <div className="flex gap-2">
-                    <Button variant="ghost" size="sm" onClick={handleSave} className="h-8 text-xs text-purple-600 hover:bg-purple-50">
+                    <Button variant="ghost" size="sm" onClick={handleSave} className="h-8 text-xs text-purple-600 dark:text-purple-400 hover:bg-purple-500/10">
                       <Save className="w-3 h-3 mr-1" /> Save
                     </Button>
                     <Button variant="ghost" size="sm" onClick={() => setOptions(['', ''])} className="h-8 text-xs">
@@ -126,7 +131,7 @@ const Index = () => {
                   <Button 
                     variant="secondary" 
                     onClick={addOption}
-                    className="w-full rounded-xl border-2 border-dashed border-slate-200 bg-transparent hover:bg-slate-50 hover:border-purple-300 transition-all"
+                    className="w-full rounded-xl border-2 border-dashed border-border bg-transparent hover:bg-accent hover:border-purple-300 transition-all"
                   >
                     <Plus className="w-4 h-4 mr-2" /> Add One More
                   </Button>
@@ -135,7 +140,7 @@ const Index = () => {
                     size="lg"
                     disabled={isSpinning}
                     onClick={handleDecide}
-                    className="w-full h-14 text-lg font-bold rounded-2xl bg-purple-600 hover:bg-purple-700 shadow-lg shadow-purple-200 transition-all active:scale-95"
+                    className="w-full h-14 text-lg font-bold rounded-2xl bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/20 transition-all active:scale-95"
                   >
                     {isSpinning ? "Deciding..." : <><Sparkles className="w-5 h-5 mr-2" /> Pick For Me!</>}
                   </Button>
@@ -147,16 +152,16 @@ const Index = () => {
           <TabsContent value="saved">
             <div className="space-y-3">
               {lists.length === 0 ? (
-                <div className="text-center py-12 bg-white rounded-3xl border border-dashed border-slate-200">
-                  <History className="w-12 h-12 text-slate-200 mx-auto mb-3" />
-                  <p className="text-slate-400 font-medium">No saved lists yet</p>
+                <div className="text-center py-12 bg-card rounded-3xl border border-dashed border-border">
+                  <History className="w-12 h-12 text-muted-foreground/20 mx-auto mb-3" />
+                  <p className="text-muted-foreground font-medium">No saved lists yet</p>
                 </div>
               ) : (
                 lists.map((list) => (
-                  <div key={list.id} className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex justify-between items-center">
+                  <div key={list.id} className="bg-card p-4 rounded-2xl border border-border shadow-sm flex justify-between items-center">
                     <div>
-                      <h4 className="font-bold text-slate-700">{list.name}</h4>
-                      <p className="text-xs text-slate-500">{list.items.length} items</p>
+                      <h4 className="font-bold">{list.name}</h4>
+                      <p className="text-xs text-muted-foreground">{list.items.length} items</p>
                     </div>
                     <div className="flex gap-2">
                       <Button size="sm" variant="outline" onClick={() => loadList(list.items)}>Load</Button>
@@ -196,7 +201,7 @@ const Index = () => {
       <style dangerouslySetInnerHTML={{ __html: `
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: hsl(var(--muted-foreground) / 0.2); border-radius: 10px; }
       `}} />
     </div>
   );
