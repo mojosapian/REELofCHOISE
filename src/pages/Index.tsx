@@ -62,7 +62,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground py-6 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300">
-      <div className="max-w-md mx-auto">
+      <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-5xl font-black mb-2 tracking-tight">
             10-Second <span className="text-purple-600">Decider</span>
@@ -103,7 +103,7 @@ const Index = () => {
                 </div>
               </CardHeader>
               <CardContent className="pt-8 px-8 pb-8">
-                <div className="max-h-[35vh] overflow-y-auto pr-2 mb-6 custom-scrollbar">
+                <div className="max-h-[45vh] overflow-y-auto pr-2 mb-6 custom-scrollbar">
                   <AnimatePresence initial={false}>
                     {options.map((option, index) => (
                       <OptionItem
