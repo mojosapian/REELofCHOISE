@@ -25,11 +25,15 @@ export const useDecider = (options: string[]) => {
     // we need to rotate by (360 - midAngle)
     const targetRotation = lastRotation.current + (extraSpins * 360) + (360 - winnerMidAngle);
     
-    console.log(`[Decider] Winner: ${validOptions[winnerIndex]} (Index: ${winnerIndex})`);
-    console.log(`[Decider] Target Rotation: ${targetRotation}deg`);
+    console.log(`[Decider] Triggered! Winner: ${validOptions[winnerIndex]} (Index: ${winnerIndex})`);
+    console.log(`[Decider] Current Rotation: ${lastRotation.current}deg -> Target: ${targetRotation}deg`);
     
-    setRotation(targetRotation);
-    lastRotation.current = targetRotation;
+    // We use a small timeout to ensure the Overlay has mounted with the 'last' rotation 
+    // before we trigger the 'new' rotation, which forces the CSS transition to fire.
+    setTimeout(() => {
+      setRotation(targetRotation);
+      lastRotation.current = targetRotation;
+    }, 50);
 
     // Match this timeout with the CSS transition duration (4s)
     setTimeout(() => {
@@ -42,7 +46,7 @@ export const useDecider = (options: string[]) => {
         origin: { y: 0.6 },
         colors: ['#FF0080', '#7928CA', '#0070F3']
       });
-    }, 4000);
+    }, 4050); // 4000ms transition + 50ms delay
   }, [options]);
 
   return {

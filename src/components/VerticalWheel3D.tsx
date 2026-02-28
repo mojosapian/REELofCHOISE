@@ -35,10 +35,12 @@ const VerticalWheel3D = ({ options, rotation, isSpinning }: VerticalWheel3DProps
 
       {/* The 3D Cylinder */}
       <div 
-        className="relative w-full h-[60px] transition-transform duration-[4000ms] cubic-bezier(0.15, 0, 0.15, 1)"
+        className="relative w-full h-[60px]"
         style={{ 
           transformStyle: 'preserve-3d',
-          transform: `rotateX(${rotation}deg)` 
+          transform: `rotateX(${rotation}deg)`,
+          transition: 'transform 4000ms cubic-bezier(0.15, 0, 0.15, 1)',
+          willChange: 'transform'
         }}
       >
         {validOptions.map((option, i) => (
@@ -67,9 +69,6 @@ const VerticalWheel3D = ({ options, rotation, isSpinning }: VerticalWheel3DProps
         }
         .backface-hidden {
           backface-visibility: hidden;
-        }
-        .cubic-bezier {
-          transition-timing-function: cubic-bezier(0.15, 0, 0.15, 1);
         }
       `}} />
     </div>
