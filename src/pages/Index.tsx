@@ -70,7 +70,7 @@ const Index = () => {
       <div className="max-w-3xl mx-auto w-full flex-1">
         <div className="text-center mb-8 md:mb-12">
           <h1 className="text-3xl md:text-5xl font-black mb-2 tracking-tight">
-            Rate<span className="text-purple-600">Radar</span>
+            REEL<span className="text-purple-600">ofCHOICE</span>
           </h1>
           <p className="text-muted-foreground font-bold text-sm md:text-base">Stop overthinking, start doing.</p>
         </div>
