@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Sparkles, RotateCcw, Save, History, LayoutGrid } from "lucide-react";
+import { Plus, Sparkles, RotateCcw, Save, History } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import OptionItem from "@/components/OptionItem";
 import DecisionVisualizer from "@/components/DecisionVisualizer";
 import BulkInput from "@/components/BulkInput";
-import LockedCategory from "@/components/LockedCategory";
 import AdPlaceholder from "@/components/AdPlaceholder";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useDecider } from "@/hooks/use-decider";
@@ -83,15 +82,12 @@ const Index = () => {
         />
 
         <Tabs defaultValue="edit" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-4 bg-card border border-border rounded-xl p-1 h-12">
+          <TabsList className="grid w-full grid-cols-2 mb-4 bg-card border border-border rounded-xl p-1 h-12">
             <TabsTrigger value="edit" className="rounded-lg data-[state=active]:bg-purple-500/10 data-[state=active]:text-purple-600 dark:data-[state=active]:text-purple-400">
               <Plus className="w-4 h-4 mr-2" /> Edit
             </TabsTrigger>
             <TabsTrigger value="saved" className="rounded-lg data-[state=active]:bg-purple-500/10 data-[state=active]:text-purple-600 dark:data-[state=active]:text-purple-400">
               <History className="w-4 h-4 mr-2" /> Saved
-            </TabsTrigger>
-            <TabsTrigger value="premium" className="rounded-lg data-[state=active]:bg-purple-500/10 data-[state=active]:text-purple-600 dark:data-[state=active]:text-purple-400">
-              <LayoutGrid className="w-4 h-4 mr-2" /> Premium
             </TabsTrigger>
           </TabsList>
 
@@ -170,23 +166,6 @@ const Index = () => {
                   </div>
                 ))
               )}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="premium">
-            <div className="space-y-3">
-              <LockedCategory 
-                name="Movie Night" 
-                onUnlock={() => loadList(['Inception', 'The Matrix', 'Interstellar', 'Pulp Fiction', 'The Dark Knight'])} 
-              />
-              <LockedCategory 
-                name="Dinner Ideas" 
-                onUnlock={() => loadList(['Italian', 'Mexican', 'Thai', 'Indian', 'Greek', 'Burgers'])} 
-              />
-              <LockedCategory 
-                name="Workout Routine" 
-                onUnlock={() => loadList(['Pushups', 'Squats', 'Plank', 'Burpees', 'Lunges'])} 
-              />
             </div>
           </TabsContent>
         </Tabs>
