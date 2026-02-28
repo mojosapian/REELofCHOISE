@@ -61,12 +61,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground py-10 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300">
+    <div className="min-h-screen bg-background text-foreground py-6 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300">
       <div className="max-w-md mx-auto">
-        <div className="flex justify-end mb-6">
-          <ThemeToggle />
-        </div>
-        
         <div className="text-center mb-8">
           <h1 className="text-5xl font-black mb-2 tracking-tight">
             10-Second <span className="text-purple-600">Decider</span>
@@ -172,8 +168,11 @@ const Index = () => {
 
         <AdPlaceholder />
 
-        <div className="mt-10 opacity-50">
-          <MadeWithDyad />
+        <div className="mt-10 flex flex-col items-center gap-6">
+          <ThemeToggle />
+          <div className="opacity-50">
+            <MadeWithDyad />
+          </div>
         </div>
       </div>
 
