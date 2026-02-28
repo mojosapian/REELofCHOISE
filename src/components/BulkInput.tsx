@@ -23,20 +23,20 @@ const BulkInput = ({ onImport }: BulkInputProps) => {
   };
 
   return (
-    <div className="space-y-3 p-4 bg-muted/30 rounded-2xl border border-border">
-      <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground mb-1">
-        <ListPlus className="w-4 h-4" />
+    <div className="space-y-4 p-6 bg-muted/30 rounded-3xl border border-border">
+      <div className="flex items-center gap-2 text-base font-black text-muted-foreground mb-1">
+        <ListPlus className="w-5 h-5" />
         Bulk Add Options
       </div>
       <Textarea 
         placeholder="Paste options separated by commas or new lines..."
         value={text}
         onChange={(e) => setText(e.target.value)}
-        className="min-h-[100px] bg-background border-border focus-visible:ring-purple-400 resize-none text-foreground"
+        className="min-h-[120px] text-lg font-bold bg-background border-border focus-visible:ring-purple-400 resize-none text-foreground rounded-2xl p-4"
       />
       <Button 
         onClick={handleImport} 
-        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
+        className="w-full h-14 text-lg font-black bg-primary hover:bg-primary/90 text-primary-foreground rounded-2xl"
         disabled={!text.trim()}
       >
         Import Options
