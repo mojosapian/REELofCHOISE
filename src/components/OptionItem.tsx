@@ -26,7 +26,7 @@ const OptionItem = ({ value, onChange, onRemove, index }: OptionItemProps) => {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={`Option ${index + 1}`}
-        className="flex-1 h-20 text-2xl font-black bg-background/50 border-2 border-purple-100 dark:border-purple-900/50 focus-visible:ring-purple-400 text-foreground rounded-2xl px-6 shadow-sm"
+        className="h-20 text-2xl font-black bg-background/50 border-2 border-purple-100 dark:border-purple-900/50 focus-visible:ring-purple-400 text-foreground rounded-2xl px-6 shadow-sm"
       />
       <Button 
         variant="ghost" 
