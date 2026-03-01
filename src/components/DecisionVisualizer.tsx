@@ -10,9 +10,8 @@ interface DecisionVisualizerProps {
 }
 
 const DecisionVisualizer = ({ options, currentIndex, isSpinning, result }: DecisionVisualizerProps) => {
-  // Reduced height from h-20/h-28 to h-14/h-20 (approx 30% reduction)
   return (
-    <div className="relative h-14 md:h-20 flex items-center justify-center overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-br from-purple-600 to-blue-600 shadow-lg mb-4 md:mb-6">
+    <div className="relative h-14 md:h-20 flex items-center justify-center overflow-hidden rounded-xl md:rounded-2xl bg-accent-primary shadow-lg mb-4 md:mb-6">
       <AnimatePresence mode="wait">
         <motion.div
           key={isSpinning ? currentIndex : (result || 'idle')}

@@ -21,7 +21,7 @@ const BulkInput = ({ onImport }: BulkInputProps) => {
     if (items.length > 0) {
       onImport(items);
       setText('');
-      setIsOpen(false); // Auto-collapse after import
+      setIsOpen(false);
     }
   };
 
@@ -30,7 +30,7 @@ const BulkInput = ({ onImport }: BulkInputProps) => {
       <Button
         variant="ghost"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between h-12 px-4 text-sm font-bold text-muted-foreground hover:text-purple-600 hover:bg-purple-500/5 rounded-xl transition-all"
+        className="w-full flex items-center justify-between h-12 px-4 text-sm font-bold text-muted-foreground hover:text-accent-primary hover:bg-accent-primary/5 rounded-xl transition-all"
       >
         <div className="flex items-center gap-2">
           <ListPlus className="w-4 h-4" />
@@ -49,16 +49,16 @@ const BulkInput = ({ onImport }: BulkInputProps) => {
             className="overflow-hidden"
           >
             <div className="pt-4 space-y-4">
-              <div className="p-4 bg-muted/20 rounded-2xl border-2 border-dashed border-border/60">
+              <div className="p-4 bg-surface/20 rounded-2xl border-2 border-dashed border-border/60">
                 <Textarea 
                   placeholder="Paste options separated by commas or new lines..."
                   value={text}
                   onChange={(e) => setText(e.target.value)}
-                  className="min-h-[150px] text-base font-bold bg-background border-border focus-visible:ring-purple-400 resize-none text-foreground rounded-xl p-3"
+                  className="min-h-[150px] text-base font-bold bg-bg-primary border-border focus-visible:ring-accent-primary resize-none text-text-main rounded-xl p-3"
                 />
                 <Button 
                   onClick={handleImport} 
-                  className="w-full mt-4 h-12 text-base font-black bg-purple-600 hover:bg-purple-700 text-white rounded-xl shadow-md"
+                  className="w-full mt-4 h-12 text-base font-black bg-accent-primary hover:opacity-90 text-white rounded-xl shadow-md"
                   disabled={!text.trim()}
                 >
                   Import Options

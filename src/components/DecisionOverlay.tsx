@@ -14,6 +14,7 @@ interface DecisionOverlayProps {
   isSpinning: boolean;
   result: string | null;
   wheelStyle: 'flat' | 'cylinder';
+  spinDuration: number;
 }
 
 const DecisionOverlay = ({ 
@@ -23,7 +24,8 @@ const DecisionOverlay = ({
   rotation, 
   isSpinning, 
   result,
-  wheelStyle
+  wheelStyle,
+  spinDuration
 }: DecisionOverlayProps) => {
   return (
     <AnimatePresence>
@@ -32,14 +34,13 @@ const DecisionOverlay = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/95 backdrop-blur-md p-6"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-bg-primary/95 backdrop-blur-md p-6 text-text-main"
         >
-          {/* Close Button */}
           <Button
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="absolute top-6 right-6 rounded-full w-12 h-12 hover:bg-accent transition-colors"
+            className="absolute top-6 right-6 rounded-full w-12 h-12 hover:bg-surface transition-colors"
           >
             <X className="w-6 h-6" />
             <span className="sr-only">Close</span>
@@ -56,12 +57,14 @@ const DecisionOverlay = ({
                 options={options} 
                 rotation={rotation} 
                 isSpinning={isSpinning} 
+                spinDuration={spinDuration}
               />
             ) : (
               <DecisionWheel 
                 options={options} 
                 rotation={rotation} 
                 isSpinning={isSpinning} 
+                spinDuration={spinDuration}
               />
             )}
 
@@ -77,7 +80,7 @@ const DecisionOverlay = ({
             {!isSpinning && result && (
               <Button 
                 onClick={onClose}
-                className="w-full h-14 text-lg font-black rounded-xl bg-purple-600 hover:bg-purple-700 text-white shadow-lg"
+                className="w-full h-14 text-lg font-black rounded-xl bg-accent-primary hover:opacity-90 text-white shadow-lg"
               >
                 Back to List
               </Button>
