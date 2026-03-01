@@ -8,6 +8,7 @@ import OptionItem from "@/components/OptionItem";
 import DecisionOverlay from "@/components/DecisionOverlay";
 import BulkInput from "@/components/BulkInput";
 import SettingsMenu from "@/components/SettingsMenu";
+import AdSense from "@/components/AdSense";
 import { useDecider } from "@/hooks/use-decider";
 import { useSavedLists } from "@/hooks/use-saved-lists";
 import { showSuccess, showError } from "@/utils/toast";
@@ -221,6 +222,8 @@ const Index = () => {
             </div>
           </TabsContent>
         </Tabs>
+
+        <AdSense adClient="ca-pub-1234567890" adSlot="YOUR_AD_SLOT_ID" />
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
