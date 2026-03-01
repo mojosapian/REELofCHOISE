@@ -7,11 +7,9 @@ import { AnimatePresence } from "framer-motion";
 import OptionItem from "@/components/OptionItem";
 import DecisionOverlay from "@/components/DecisionOverlay";
 import BulkInput from "@/components/BulkInput";
-import AdPlaceholder from "@/components/AdPlaceholder";
 import SettingsMenu from "@/components/SettingsMenu";
 import { useDecider } from "@/hooks/use-decider";
 import { useSavedLists } from "@/hooks/use-saved-lists";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { showSuccess, showError } from "@/utils/toast";
 
 const Index = () => {
@@ -223,14 +221,6 @@ const Index = () => {
             </div>
           </TabsContent>
         </Tabs>
-
-        <AdPlaceholder />
-
-        <div className="mt-8 flex flex-col items-center gap-4">
-          <div className="opacity-50">
-            <MadeWithDyad />
-          </div>
-        </div>
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
