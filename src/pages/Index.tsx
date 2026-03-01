@@ -142,12 +142,20 @@ const Index = () => {
               <CardHeader className="border-b border-border py-3 md:py-4 px-4 md:px-6">
                 <div className="flex justify-between items-center">
                   <CardTitle className="text-lg md:text-xl font-black">Options</CardTitle>
-                  <div className="flex gap-2">
-                    <Button variant="ghost" size="sm" onClick={handleSave} className="h-8 md:h-9 px-3 text-[10px] md:text-xs font-bold text-accent-primary hover:bg-accent-primary/10 rounded-lg">
-                      <Save className="w-3 h-3 mr-1" /> Save
+                  <div className="flex gap-3">
+                    <Button 
+                      variant="outline" 
+                      onClick={handleSave} 
+                      className="h-10 md:h-12 px-4 md:px-6 text-xs md:text-sm font-black text-accent-primary border-accent-primary/20 hover:bg-accent-primary/10 rounded-xl transition-all"
+                    >
+                      <Save className="w-4 h-4 mr-2" /> Save
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={() => setOptions(['', ''])} className="h-8 md:h-9 px-3 text-[10px] md:text-xs font-bold rounded-lg">
-                      <RotateCcw className="w-3 h-3 mr-1" /> Reset
+                    <Button 
+                      variant="outline" 
+                      onClick={() => setOptions(['', ''])} 
+                      className="h-10 md:h-12 px-4 md:px-6 text-xs md:text-sm font-black border-border hover:bg-surface rounded-xl transition-all"
+                    >
+                      <RotateCcw className="w-4 h-4 mr-2" /> Reset
                     </Button>
                   </div>
                 </div>
