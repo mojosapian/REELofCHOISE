@@ -35,7 +35,7 @@ const SettingsMenu = ({
   onSpinDurationChange,
   onClearList,
   onExportList,
-  history,
+  history = [], // Default to empty array to prevent undefined errors
   onClearHistory
 }: SettingsMenuProps) => {
   const { theme, setTheme } = useTheme();
@@ -149,7 +149,7 @@ const SettingsMenu = ({
               </Button>
             </div>
             <div className="space-y-2">
-              {history.length === 0 ? (
+              {(!history || history.length === 0) ? (
                 <div className="text-center py-6 bg-surface/20 rounded-xl border border-dashed border-border">
                   <p className="text-[10px] font-bold text-muted-foreground">No history yet</p>
                 </div>
