@@ -109,7 +109,7 @@ const Index = () => {
           />
           <div className="text-center flex-1">
             <h1 className="text-3xl md:text-5xl font-black tracking-tight">
-              REEL<span className="text-accent-primary">ofCHOICE</span>
+              REEL<span className="text-accent-primary">of</span><span className="text-fuchsia-500">CHOICE</span>
             </h1>
             <p className="text-muted-foreground font-bold text-xs md:text-sm">Stop overthinking, start doing.</p>
           </div>
