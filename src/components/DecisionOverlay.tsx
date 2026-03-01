@@ -34,41 +34,43 @@ const DecisionOverlay = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-bg-primary/95 backdrop-blur-md p-6 text-text-main"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-bg-primary/95 backdrop-blur-md p-4 md:p-6 text-text-main"
         >
           <Button
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="absolute top-6 right-6 rounded-full w-12 h-12 hover:bg-surface transition-colors"
+            className="absolute top-4 right-4 md:top-6 md:right-6 rounded-full w-12 h-12 hover:bg-surface transition-colors"
           >
             <X className="w-6 h-6" />
             <span className="sr-only">Close</span>
           </Button>
 
-          <div className="w-full max-w-md flex flex-col items-center gap-8">
-            <div className="text-center space-y-2">
-              <h2 className="text-2xl font-black tracking-tight">The Radar is Spinning...</h2>
-              <p className="text-muted-foreground font-medium">Good luck!</p>
+          <div className="w-full max-w-lg flex flex-col items-center gap-6 md:gap-8">
+            <div className="text-center space-y-1 md:space-y-2">
+              <h2 className="text-2xl md:text-3xl font-black tracking-tight">The Radar is Spinning...</h2>
+              <p className="text-muted-foreground font-medium text-sm md:text-base">Good luck!</p>
             </div>
 
-            {wheelStyle === 'cylinder' ? (
-              <VerticalWheel3D 
-                options={options} 
-                rotation={rotation} 
-                isSpinning={isSpinning} 
-                spinDuration={spinDuration}
-              />
-            ) : (
-              <DecisionWheel 
-                options={options} 
-                rotation={rotation} 
-                isSpinning={isSpinning} 
-                spinDuration={spinDuration}
-              />
-            )}
+            <div className="w-full py-4">
+              {wheelStyle === 'cylinder' ? (
+                <VerticalWheel3D 
+                  options={options} 
+                  rotation={rotation} 
+                  isSpinning={isSpinning} 
+                  spinDuration={spinDuration}
+                />
+              ) : (
+                <DecisionWheel 
+                  options={options} 
+                  rotation={rotation} 
+                  isSpinning={isSpinning} 
+                  spinDuration={spinDuration}
+                />
+              )}
+            </div>
 
-            <div className="w-full">
+            <div className="w-full max-w-md">
               <DecisionVisualizer 
                 options={options} 
                 currentIndex={0} 
@@ -80,7 +82,7 @@ const DecisionOverlay = ({
             {!isSpinning && result && (
               <Button 
                 onClick={onClose}
-                className="w-full h-14 text-lg font-black rounded-xl bg-accent-primary hover:opacity-90 text-white shadow-lg"
+                className="w-full max-w-md h-14 md:h-16 text-lg font-black rounded-xl bg-accent-primary hover:opacity-90 text-white shadow-lg active:scale-95 transition-transform"
               >
                 Back to List
               </Button>
